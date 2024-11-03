@@ -1,0 +1,34 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
+        <h2 class="text-3xl font-extrabold text-center text-teal-600">Iniciar Sesión</h2>
+        <app-alert></app-alert>
+        <form [formGroup]="loginForm" (ngSubmit)="login()" class="space-y-4">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700">Usuario</label>
+                <input type="text" id="username" formControlName="username" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-teal-500 transition duration-150 ease-in-out" />
+                <div *ngIf="loginForm.get('username')?.invalid && loginForm.get('username')?.touched" class="text-red-500 text-sm">
+                    El usuario es requerido.
+                </div>
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                <input type="password" id="password" formControlName="password" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-teal-500 transition duration-150 ease-in-out" />
+                <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="text-red-500 text-sm">
+                    La contraseña es requerida.
+                </div>
+            </div>
+            <div>
+                <button type="submit" 
+                        [disabled]="loginForm.invalid"
+                        class="w-full px-4 py-2 text-white cursor-pointer bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 transition duration-150 ease-in-out">
+                    Iniciar Sesión
+                </button>
+            </div>
+        </form>
+        <p class="mt-4 text-center text-sm text-gray-600">
+            ¿No tienes una cuenta? <a routerLink="/register" class="text-teal-600 hover:text-teal-700 font-semibold">Regístrate aquí</a>
+        </p>
+    </div>
+</div>

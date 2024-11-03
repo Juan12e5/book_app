@@ -1,0 +1,45 @@
+<div class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="w-full max-w-md p-8 space-y-6 bg-white rounded-lg shadow-lg">
+        <app-alert></app-alert>
+        <h2 class="text-3xl font-extrabold text-center text-teal-600">Registrarse</h2>
+        <form [formGroup]="registerForm" (ngSubmit)="register()" class="space-y-4">
+            <div>
+                <label for="username" class="block text-sm font-medium text-gray-700">Usuario</label>
+                <input type="text" id="username" formControlName="username" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-teal-500 transition duration-150 ease-in-out" />
+                <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="text-red-500 text-sm">
+                    El usuario es requerido.
+                </div>
+            </div>
+            <div>
+                <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                <input type="password" id="password" formControlName="password" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-teal-500 transition duration-150 ease-in-out" />
+                <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-red-500 text-sm">
+                    La contraseña es requerida y debe tener al menos 6 caracteres.
+                </div>
+            </div>
+            <div>
+                <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
+                <input type="password" id="confirmPassword" formControlName="confirmPassword" required
+                       class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-teal-500 transition duration-150 ease-in-out" />
+                <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="text-red-500 text-sm">
+                    Debe confirmar la contraseña.
+                </div>
+                <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" class="text-red-500 text-sm">
+                    Las contraseñas no coinciden.
+                </div>
+            </div>
+            <div>
+                <button type="submit" 
+                        [disabled]="registerForm.invalid"
+                        class="w-full px-4 py-2 text-white cursor-pointer bg-teal-600 rounded-md hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50 transition duration-150 ease-in-out">
+                    Registrarse
+                </button>
+            </div>
+            <p class="mt-4 text-center text-sm text-gray-600">
+                ¿Ya tienes cuenta? <a routerLink="/login" class="text-teal-600 hover:text-teal-700 font-semibold">Inicia sesión</a>
+            </p>
+        </form>
+    </div>
+</div>

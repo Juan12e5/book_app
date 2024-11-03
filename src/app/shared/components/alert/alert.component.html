@@ -1,0 +1,19 @@
+<div *ngIf="message" [ngClass]="alertClass" class="border-l-4 p-4 rounded-md mb-4">
+    <div class="flex">
+      <div class="flex-shrink-0">
+        <svg *ngIf="type === 'success'" class="w-5 h-5 text-green-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.707a1 1 0 10-1.414 1.414L10 12.586l-1.293-1.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+        </svg>
+        <svg *ngIf="type === 'error'" class="w-5 h-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM9 8a1 1 0 112 0v4a1 1 0 11-2 0V8zm1 7a1 1 0 100-2 1 1 0 000 2z" clip-rule="evenodd"/>
+        </svg>
+        <svg *ngIf="type === 'warning'" class="w-5 h-5 text-yellow-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.72-1.36 3.486 0l6.18 10.957c.75 1.328-.213 2.944-1.742 2.944H3.82c-1.529 0-2.492-1.616-1.742-2.944L8.257 3.1zM11 13a1 1 0 10-2 0v2a1 1 0 102 0v-2zm-1-7a1 1 0 00-.993.883L9 7v4a1 1 0 001.993.117L11 11V7a1 1 0 00-1-1z" clip-rule="evenodd"/>
+        </svg>
+      </div>
+      <div class="ml-3">
+        <p class="text-sm font-medium">{{ message }}</p>
+      </div>
+    </div>
+  </div>
+  

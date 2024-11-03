@@ -1,0 +1,12 @@
+<header 
+    class="bg-white shadow px-6 py-4 flex justify-between items-center transition-all duration-300 ease-in-out max-lg:pl-16"
+>
+    <h1 class="text-xl font-semibold">Bienvenido al Dashboard</h1>
+    <!-- Información del Usuario -->
+    <div class="flex items-center space-x-4">
+        <div *ngIf="userInfo">
+            <p class="mr-4">Hola, {{ userInfo.username }}</p>
+        </div>
+        <button (click)="onLogout()" class="bg-gray-200 px-3 py-1 rounded hover:bg-gray-300">Cerrar sesión</button>
+    </div>
+</header>
