@@ -1,20 +1,23 @@
 <div class="p-6 bg-gray-100">
-    <h1 class="text-3xl font-semibold mb-6 text-center text-gray-800">Galería de Libros</h1>
-    <div class="flex justify-center mb-8">
-      <button 
-        (click)="addBook()" 
-        class="px-6 py-2 bg-teal-600 text-white font-medium rounded-lg shadow-md hover:bg-teal-700 transition duration-200">
-        Agregar Libro
-      </button>
-    </div>
-
-     <div *ngIf="books.length === 0" class="text-center text-gray-500">
+  <h1 class="text-3xl font-semibold mb-6 text-center text-gray-800">Tu galería de Libros</h1>
+  
+  <div class="flex justify-center mb-8">
+    <button 
+      (click)="addBook()" 
+      class="px-6 py-2 bg-teal-600 text-white font-medium rounded-lg shadow-md hover:bg-teal-700 transition duration-200">
+      Agregar Libro
+    </button>
+  </div>
+  
+  <ng-container *ngIf="books.length === 0">
+    <div class="text-center text-gray-500">
       <p>No hay libros disponibles</p>
     </div>
-  
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      <div *ngFor="let book of books" class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
-        <!--Por motivos de diseño, pero en el momento no se está utilizado imagenes para los libros -->
+  </ng-container>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <ng-container *ngFor="let book of books">
+      <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
         <img [src]="book.imageUrl || 'https://via.placeholder.com/150x200?text=Sin+Imagen'" 
              alt="{{ book.title }}" 
              class="w-full h-48 sm:h-56 md:h-64 object-cover">
@@ -25,6 +28,7 @@
             <p class="text-gray-500 font-medium mb-2">Autor: {{ book.author }}</p>
             <p class="text-gray-600 mb-4 line-clamp-3">{{ book.description }}</p>
           </div>
+
           <div class="flex gap-2 mt-4">
             <button 
               (click)="editBook(book._id)" 
@@ -46,6 +50,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </ng-container>
   </div>
-  
+</div>

@@ -1,32 +1,53 @@
 <div class="p-6 bg-white rounded-lg shadow-md">
   <app-alert></app-alert>
-    <h1 class="text-2xl font-bold mb-4">Agregar Libro</h1>
-    <form [formGroup]="bookForm" (ngSubmit)="addBook()">
-      <div class="mb-4">
-        <label class="block text-gray-700">Título:</label>
-        <input formControlName="title" class="border rounded-lg p-2 w-full" required>
-        <div *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched" class="text-red-500">
+  <h1 class="text-2xl font-bold mb-4">Agregar Libro</h1>
+  <form [formGroup]="bookForm" (ngSubmit)="addBook()">
+    
+    <div class="mb-4">
+      <label class="block text-gray-700">Título:</label>
+      <input formControlName="title" class="border rounded-lg p-2 w-full" required>
+      <ng-container *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched">
+        <div class="text-red-500">
           Título es requerido.
         </div>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700">Autor:</label>
-        <input formControlName="author" class="border rounded-lg p-2 w-full" required>
-        <div *ngIf="bookForm.get('author')?.invalid && bookForm.get('author')?.touched" class="text-red-500">
+      </ng-container>
+    </div>
+    
+    <div class="mb-4">
+      <label class="block text-gray-700">Autor:</label>
+      <input formControlName="author" class="border rounded-lg p-2 w-full" required>
+      <ng-container *ngIf="bookForm.get('author')?.invalid && bookForm.get('author')?.touched">
+        <div class="text-red-500">
           Autor es requerido.
         </div>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700">Descripción:</label>
-        <textarea formControlName="description" class="border rounded-lg p-2 w-full" required></textarea>
-        <div *ngIf="bookForm.get('description')?.invalid && bookForm.get('description')?.touched" class="text-red-500">
+      </ng-container>
+    </div>
+    
+    <div class="mb-4">
+      <label class="block text-gray-700">Descripción:</label>
+      <textarea formControlName="description" class="border rounded-lg p-2 w-full" required></textarea>
+      <ng-container *ngIf="bookForm.get('description')?.invalid && bookForm.get('description')?.touched">
+        <div class="text-red-500">
           Descripción es requerida.
         </div>
-      </div>
-      <div class="flex justify-between">
-        <button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700" [disabled]="bookForm.invalid">Guardar</button>
-        <button type="button" (click)="cancel()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Cancelar</button>
-      </div>
-    </form>
-  </div>
-  
+      </ng-container>
+    </div>
+    
+    <div class="flex justify-between">
+      <ng-container>
+        <button 
+          type="submit" 
+          class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700" 
+          [disabled]="bookForm.invalid">
+          Guardar
+        </button>
+        <button 
+          type="button" 
+          (click)="cancel()" 
+          class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">
+          Cancelar
+        </button>
+      </ng-container>
+    </div>
+  </form>
+</div>

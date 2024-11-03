@@ -1,7 +1,11 @@
 <div class="p-6 bg-white rounded-lg shadow-md">
-  <app-alert></app-alert>
-    <h1 class="text-2xl font-bold mb-4">Editar Libro</h1>
-    <form [formGroup]="bookForm" (ngSubmit)="updateBook()">
+  <ng-container>
+    <app-alert></app-alert>
+  </ng-container>
+
+  <h1 class="text-2xl font-bold mb-4">Editar Libro</h1>
+  <form [formGroup]="bookForm" (ngSubmit)="updateBook()">
+    <ng-container>
       <div class="mb-4">
         <label class="block text-gray-700">Título:</label>
         <input formControlName="title" class="border rounded-lg p-2 w-full" required>
@@ -9,6 +13,9 @@
           Título es requerido.
         </div>
       </div>
+    </ng-container>
+
+    <ng-container>
       <div class="mb-4">
         <label class="block text-gray-700">Autor:</label>
         <input formControlName="author" class="border rounded-lg p-2 w-full" required>
@@ -16,6 +23,9 @@
           Autor es requerido.
         </div>
       </div>
+    </ng-container>
+
+    <ng-container>
       <div class="mb-4">
         <label class="block text-gray-700">Descripción:</label>
         <textarea formControlName="description" class="border rounded-lg p-2 w-full" required></textarea>
@@ -23,9 +33,11 @@
           Descripción es requerida.
         </div>
       </div>
-      <div class="flex justify-between">
-        <button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700" [disabled]="bookForm.invalid">Actualizar Libro</button>
-        <button type="button" (click)="cancel()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Cancelar</button>
-      </div>
-    </form>
+    </ng-container>
+
+    <div class="flex justify-between">
+      <button type="submit" class="bg-teal-600 text-white px-4 py-2 rounded hover:bg-teal-700" [disabled]="bookForm.invalid">Actualizar Libro</button>
+      <button type="button" (click)="cancel()" class="bg-gray-300 text-gray-700 px-4 py-2 rounded hover:bg-gray-400">Cancelar</button>
+    </div>
+  </form>
 </div>

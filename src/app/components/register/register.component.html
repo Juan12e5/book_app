@@ -7,28 +7,28 @@
                 <label for="username" class="block text-sm font-medium text-gray-700">Usuario</label>
                 <input type="text" id="username" formControlName="username" required
                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-teal-500 transition duration-150 ease-in-out" />
-                <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="text-red-500 text-sm">
-                    El usuario es requerido.
-                </div>
+                <ng-container *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
+                    <div class="text-red-500 text-sm">El usuario es requerido.</div>
+                </ng-container>
             </div>
             <div>
                 <label for="password" class="block text-sm font-medium text-gray-700">Contraseña</label>
                 <input type="password" id="password" formControlName="password" required
                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-teal-500 transition duration-150 ease-in-out" />
-                <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-red-500 text-sm">
-                    La contraseña es requerida y debe tener al menos 6 caracteres.
-                </div>
+                <ng-container *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+                    <div class="text-red-500 text-sm">La contraseña es requerida y debe tener al menos 6 caracteres.</div>
+                </ng-container>
             </div>
             <div>
                 <label for="confirmPassword" class="block text-sm font-medium text-gray-700">Confirmar Contraseña</label>
                 <input type="password" id="confirmPassword" formControlName="confirmPassword" required
                        class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring focus:ring-teal-500 transition duration-150 ease-in-out" />
-                <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched" class="text-red-500 text-sm">
-                    Debe confirmar la contraseña.
-                </div>
-                <div *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched" class="text-red-500 text-sm">
-                    Las contraseñas no coinciden.
-                </div>
+                <ng-container *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
+                    <div class="text-red-500 text-sm">Debe confirmar la contraseña.</div>
+                </ng-container>
+                <ng-container *ngIf="registerForm.hasError('passwordMismatch') && registerForm.get('confirmPassword')?.touched">
+                    <div class="text-red-500 text-sm">Las contraseñas no coinciden.</div>
+                </ng-container>
             </div>
             <div>
                 <button type="submit" 

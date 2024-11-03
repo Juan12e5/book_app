@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { BookListComponent } from './components/book-list/book-list.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { LayoutComponent } from './components/layout/layout/layout.component';
 import { AddBookComponent } from './components/add-book/add-book.component'; 
 import { EditBookComponent } from './components/edit-book/edit-book.component';
 import { AuthMiddleware } from './services/middleware/auth.middleware';
@@ -14,7 +14,7 @@ export const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   {
     path: 'dashboard',
-    component: DashboardComponent,
+    component: LayoutComponent,
     canActivate: [AuthMiddleware],
     children: [
       { path: 'books', component: BookListComponent }, 
