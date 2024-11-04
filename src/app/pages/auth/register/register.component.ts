@@ -15,6 +15,8 @@ import { AlertComponent } from '../../../shared/components/alert/alert.component
 export class RegisterComponent {
   registerForm: FormGroup;
   @ViewChild(AlertComponent) alertComponent!: AlertComponent;
+  showPassword = false;
+  showConfirmPassword = false;
 
   constructor(
     private fb: FormBuilder, 
@@ -33,6 +35,14 @@ export class RegisterComponent {
     const confirmPassword = control.get('confirmPassword')?.value;
     return password === confirmPassword ? null : { passwordMismatch: true };
   }
+
+  togglePasswordVisibility(field: string): void {
+    if (field === 'password') {
+        this.showPassword = !this.showPassword;
+    } else if (field === 'confirmPassword') {
+        this.showConfirmPassword = !this.showConfirmPassword;
+    }
+}
 
   register() {
     if (this.registerForm.invalid) {

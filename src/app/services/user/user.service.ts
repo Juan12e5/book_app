@@ -35,4 +35,8 @@ export class UserService {
   logout(): void {
     this.userInfo = null; 
   }
+
+  loadToken(token:string): any {
+    localStorage.setItem('token', token)
+  }
 }

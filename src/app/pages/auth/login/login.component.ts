@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth/auth.service';
 import { AlertComponent } from '../../../shared/components/alert/alert.component';
+import { UserService } from '../../../services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -15,12 +16,14 @@ import { AlertComponent } from '../../../shared/components/alert/alert.component
 })
 export class LoginComponent {
   loginForm: FormGroup;
+  showPassword = false;
 
   @ViewChild(AlertComponent) alertComponent!: AlertComponent;
 
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private userService: UserService,
     private router: Router
   ) {
     this.loginForm = this.formBuilder.group({
@@ -34,7 +37,8 @@ export class LoginComponent {
       const { username, password } = this.loginForm.value;
       this.authService.login(username, password).subscribe(
         (response) => {
-          localStorage.setItem('token', response.token);
+          // localStorage.setItem('token', response.token);
+          this.userService.loadToken(response.token)
           this.router.navigate(['/dashboard']);
           this.alertComponent.showAlert('Inicio de sesión exitoso.', 'success');
         },
@@ -43,5 +47,9 @@ export class LoginComponent {
         }
       );
     }
+  }
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
   }
 }

@@ -1,6 +1,15 @@
 <div class="p-6 bg-gray-100">
   <h1 class="text-3xl font-semibold mb-6 text-center text-gray-800">Tu galería de Libros</h1>
-  
+
+  <div class="flex justify-center mb-4">
+    <input 
+      [(ngModel)]="searchText" 
+      type="text" 
+      placeholder="Buscar libros por título o autor..." 
+      class="px-4 py-2 border border-gray-300 rounded-lg w-full max-w-xs text-gray-700 focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+    />
+  </div>
+
   <div class="flex justify-center mb-8">
     <button 
       (click)="addBook()" 
@@ -8,15 +17,15 @@
       Agregar Libro
     </button>
   </div>
-  
-  <ng-container *ngIf="books.length === 0">
+
+  <ng-container *ngIf="(books | bookFilter: searchText).length === 0">
     <div class="text-center text-gray-500">
       <p>No hay libros disponibles</p>
     </div>
   </ng-container>
 
   <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-    <ng-container *ngFor="let book of books">
+    <ng-container *ngFor="let book of books | bookFilter: searchText">
       <div class="bg-white rounded-lg shadow-lg overflow-hidden flex flex-col">
         <img [src]="book.imageUrl || 'https://via.placeholder.com/150x200?text=Sin+Imagen'" 
              alt="{{ book.title }}" 
@@ -33,18 +42,12 @@
             <button 
               (click)="editBook(book._id)" 
               class="flex items-center justify-center flex-1 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200 font-medium">
-              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path d="M17.414 2.586a2 2 0 0 0-2.828 0L9 8.172V11h2.828l5.586-5.586a2 2 0 0 0 0-2.828zM7 12v2h2l8 8h-2.828l-8-8H7zm-5 3a1 1 0 0 0 1 1h3v-2H3v-3H1v3a1 1 0 0 0 1 1z"/>
-              </svg>
               Editar
             </button>
   
             <button 
               (click)="confirmDelete(book._id)" 
               class="flex items-center justify-center flex-1 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200 font-medium">
-              <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M6.707 4.293A1 1 0 0 1 7.414 4h5.172a1 1 0 0 1 .707.293l2 2a1 1 0 0 1 .293.707v7a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-7a1 1 0 0 1 .293-.707l2-2zM9 9a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0V9zm4 0a1 1 0 1 0-2 0v4a1 1 0 1 0 2 0V9z"/>
-              </svg>
               Eliminar
             </button>
           </div>
